@@ -1,0 +1,67 @@
+#include <iostream>
+
+class Laras {
+public:
+    int panjang_laras;
+    Laras(int add_laras)
+    {
+        this->panjang_laras = add_laras;
+    }
+    void pasang_laras()
+    {
+        std::cout << "Panjang Laras : " << panjang_laras << std::endl;
+    }
+};
+
+class Peluru {
+public:
+    int jumlah_peluru;
+    Peluru(int add_peluru)
+    {
+        this ->  jumlah_peluru = add_peluru;
+    }
+    void LoadBullet()
+    {
+        std::cout << "Jumlah Peluru" << jumlah_peluru << std::endl;
+    }
+    void ReloadBullet(int add_bullet)
+    {
+       this -> jumlah_peluru += add_bullet;
+    }
+};
+
+class Gun : public Laras, public Peluru {
+private:
+    
+public:
+    Gun(int p_laras, int j_peluru) : Peluru(j_peluru), Laras(p_laras)
+    {
+        //panjang_laras = p_laras;
+        //jumlah_peluru = j_peluru;
+    }
+    void Dor()
+    {
+         jumlah_peluru -= 1;
+         std::cout << "Menembak Target Sejauh" << panjang_laras * 100 << std::endl;
+         std::cout << "Jumlah Peluru" << jumlah_peluru << std::endl;
+    }
+};
+
+int main () {
+    Gun ak47(100, 5);
+    
+    ak47.pasang_laras();
+    ak47.LoadBullet();
+    
+    for (int i=0;i<5;i++){
+        ak47.Dor();
+    }
+    
+    ak47.ReloadBullet(10);
+    
+    for (int i=0;i<10;i++){
+        ak47.Dor();
+    }
+    
+    return 0;
+}
